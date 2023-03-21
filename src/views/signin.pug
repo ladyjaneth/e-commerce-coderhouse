@@ -1,0 +1,25 @@
+extends layout
+
+block css
+    link(rel='stylesheet' href='css/signin.css')
+
+block body-page
+    .form-signin.w-100.m-auto
+        form(action='/sign/in' method='POST')
+            h1.h3.mb-3.fw-normal LOGUEATE
+
+            .form-floating
+                input#email.form-control(type='email' placeholder='Correo Electronico')
+                label(for='email') Correo
+
+            .form-floating
+                input#password.form-control(type='password' placeholder='Contraseña')
+                label(for='password') Contrase&ntilde;a
+
+            .mb-3
+
+            button.w-100.btn.btn-lg.btn-primary(type='submit') Ingresar
+
+            .mb-3
+
+            a.mt-5.mb-3(href='/sign/up') Registrarse
