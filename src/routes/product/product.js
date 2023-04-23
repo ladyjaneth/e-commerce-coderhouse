@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import * as producController from '../../controllers/auth/producController.js';
+import * as productController from '../../controllers/product/productController.js';
 
-const routerSign = new Router();
+const product = new Router();
 
-routerSign.get('/in', producController.signin);
-routerSign.get('/up', producController.signup);
-routerSign.post('/in', producController.storeSession);
-routerSign.post('/up', producController.storeUser);
-routerSign.post('/out', producController.signout);
+product.get('/', productController.all); // api/product/
+product.get('/:id', productController.findById); //
+product.post('/', productController.store);
+product.put('/:id', productController.update);
+product.delete('/:id', productController.deleteById);
 
-export default routerSign;
+export default product;
