@@ -1,6 +1,11 @@
 import fs from 'fs'
 import { transformarProductDTO } from '../../dtos/productDTO.js';
 
+const generadorDeIds = {
+    id: 1,
+    next() { return this.id++}
+}
+
 export default class ProductDAOFile{
     constructor(ruta){
         this.ruta = ruta;
@@ -27,7 +32,7 @@ export default class ProductDAOFile{
     async readFile(){
         let texto = '{}';
         try {
-            texto = await fs.promises.readFile(this.nombreArchivo, 'utf-8');
+            texto = await fs.promises.readFile(this.ruta, 'utf-8');
             texto = await JSON.parse(texto);
         } catch (exception) {
             console.error(exception);            
@@ -44,8 +49,8 @@ export default class ProductDAOFile{
         }
     }
 
-    async getIndex(id){
-        return await this.products.findIndex(product => product.id == id);
+    getIndex(id){
+        return this.products.findIndex(product => product.id == id);
     }
 
     async getAll(){
@@ -59,7 +64,7 @@ export default class ProductDAOFile{
         return productsDTO;
     }
 
-    async getById(){
+    async getById(id){
         let productDTO = {};
         try {
             await this.readFile();
@@ -75,6 +80,7 @@ export default class ProductDAOFile{
         let productDTO = {};
         try {
             await this.readFile();
+            product.id = generadorDeIds.next();
             this.products.push(product);
             await this.writeFile();
             productDTO = transformarProductDTO(product);
