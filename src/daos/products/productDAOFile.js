@@ -1,13 +1,9 @@
 import fs from 'fs'
 import { transformarProductDTO } from '../../dtos/productDTO.js';
 
-const generadorDeIds = {
-    id: 1,
-    next() { return this.id++}
-}
-
 export default class ProductDAOFile{
     constructor(ruta){
+        this.id = 1;
         this.ruta = ruta;
         this.products = [];
     }
@@ -80,7 +76,7 @@ export default class ProductDAOFile{
         let productDTO = {};
         try {
             await this.readFile();
-            product.id = generadorDeIds.next();
+            product.id = this.generadorDeIds();
             this.products.push(product);
             await this.writeFile();
             productDTO = transformarProductDTO(product);
@@ -111,5 +107,8 @@ export default class ProductDAOFile{
         return transformarProductDTO(update);
     }
 
+    generadorDeIds(){
+        return this.id++;
+    }
 
 }

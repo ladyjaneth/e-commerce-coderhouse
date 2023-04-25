@@ -3,7 +3,7 @@ import ProductDAOFile from "../daos/products/productDAOFile.js";
 import ProductDAODb from "../daos/products/productDAODb.js";
 
 const rutaFile = './txt/products.txt';
-const connString = 'mongondb://localhost/proyect';
+const connString = 'mongodb://localhost:27017/final-proyect';
 
 const option = process.argv[2] || 'Mem';
 

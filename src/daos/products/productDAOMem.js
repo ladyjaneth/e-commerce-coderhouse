@@ -1,12 +1,8 @@
 import { transformarProductDTO } from '../../dtos/productDTO.js';
 
-const generadorDeIds = {
-    id: 1,
-    next() { return this.id++}
-}
-
 export default class ProductDaoMem{
     constructor(){
+        this.id = 1;
         this.products = [];
     }
     
@@ -45,7 +41,7 @@ export default class ProductDaoMem{
     async save(product){
         let productDTO = {};
         try{
-            product.id = generadorDeIds.next();
+            product.id = this.generadorDeIds();
             this.products.push(product);
             productDTO = await transformarProductDTO(product);
         }catch(exception){
@@ -78,5 +74,9 @@ export default class ProductDaoMem{
             console.error(exception);
         }
         return productDTO;
+    }
+
+    generadorDeIds(){
+        return this.id++;
     }
 }
