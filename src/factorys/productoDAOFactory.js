@@ -5,7 +5,7 @@ import ProductDAODb from "../daos/products/productDAODb.js";
 const rutaFile = './txt/products.txt';
 const connString = 'mongodb://localhost:27017/final-proyect';
 
-const option = process.argv[2] || 'Mem';
+const option = process.env.STORE || 'Mem';
 
 let dao
 switch (option) {
