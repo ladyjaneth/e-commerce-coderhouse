@@ -1,15 +1,18 @@
 import * as shoppingCartService from '../../services/shopping-cart/shoppingCart.service.js';
+import * as userService from '../../services/users/users.service.js';
 
 export const all = async (req, res) => {
     const userId = Number(req.params.userId);
-    const shoppingCart = await shoppingCartService.getAll();
+    const user = userService.getById(userId);
+    const shoppingCart = await shoppingCartService.getAll(user);
     res.json(shoppingCart);
 }
 
 export const store = async (req, res) => {
     const userId = Number(req.params.userId);
+    const user = userService.getById(userId);
     let shoppingCart = req.body;
-    shoppingCart = await shoppingCartService.save(shoppingCart);
+    shoppingCart = await shoppingCartService.save(user, shoppingCart);
     res.json(shoppingCart);
 }
 

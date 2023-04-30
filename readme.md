@@ -5,6 +5,7 @@ Este proyecto es una API para un carrito de compras, construida con Node.js. Per
 ## Tabla de contenido
 - [Instalación](#instalación)
 - [Endpoints](#endpoints)
+  - [Registro/Autenticación](#sign-upin)
   - [Productos](#productos)
   - [Carrito de Compras](#carrito-de-compras)
 - [Licencia](#licencia)
@@ -33,6 +34,35 @@ npm start
 ## Endpoints
 La API tiene los siguientes endpoints:
 
+## Sign up/in
+
+* **POST /sign/up**: agrega un nuevo usuario al sistema
+* **POST /sign/in**: inicia sesión en el sistema
+
+Para agregar un nuevo usuario, envía una solicitud POST a **/sign/up** con un cuerpo que contenga el nombre, correo electronico, contraseña y dirección de envió. Por ejemplo:
+
+```json
+POST /sign/up
+
+{
+  "name": "User",
+  "email": "user@user.com",
+  "address": "Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678",
+  "password": "password"
+}
+```
+
+Para iniciar sesión, envía una solicitud POST a **/sign/in** con un cuerpo que contenga el nombre, correo electronico, contraseña y dirección de envió. Por ejemplo:
+
+```json
+POST /sign/in
+
+{
+  "email": "user@user.com",
+  "password": "password"
+}
+```
+
 ### Productos
 
 * **GET /products**: devuelve todos los productos disponibles
@@ -41,7 +71,7 @@ La API tiene los siguientes endpoints:
 * **PUT /products/:id**: actualiza el producto con el id especificado
 * **DELETE /products/:id**: elimina el producto con el id especificado
 
-Para agregar un producto, envía una solicitud POST a **/product** con un cuerpo que contenga el nombre, precio y url de la imagén del producto. Por ejemplo:
+Para agregar un producto, envía una solicitud POST a **/product** con un cuerpo que contenga el correo eléctronico y la contraseña de un usuario registrado. Por ejemplo:
 
 ```json
 POST /products
