@@ -1,0 +1,8 @@
+[
+  {
+    "nombre": "tablet",
+    "precio": 300,
+    "url": "https://resource.logitech.com/w_692,c_limit,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/m171/gallery/m171-gallery-red-1.png?v=1",
+    "id": 2
+  }
+]

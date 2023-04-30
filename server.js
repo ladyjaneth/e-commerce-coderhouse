@@ -3,6 +3,8 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 
 import routerSign from './src/routes/auth/auth.js';
+import routerProduct from './src/routes/product/product.js';
+
 
 const app = express();
 const PORT = 8080;
@@ -33,3 +35,4 @@ app.listen(PORT, () => console.log(`Example app listening on port ${PORT}`));
 
 //CONFIGURACIÓN DE RUTAS
 app.use('/sign', routerSign);
+app.use('/product',routerProduct);
