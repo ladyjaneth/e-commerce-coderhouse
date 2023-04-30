@@ -5,9 +5,13 @@ import session from 'express-session';
 import routerSign from './src/routes/auth/auth.js';
 import routerProduct from './src/routes/product/product.js';
 
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.APP_PORT || 8080;
 
 //CONFIGURACIÓN PARA USO DE SESSION
 app.use(session({
