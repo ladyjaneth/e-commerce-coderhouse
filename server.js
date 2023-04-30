@@ -7,7 +7,7 @@ import routerProduct from './src/routes/product/product.js';
 
 
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 //CONFIGURACIÓN PARA USO DE SESSION
 app.use(session({
