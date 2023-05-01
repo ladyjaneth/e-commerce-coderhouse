@@ -48,7 +48,9 @@ export default class ShoppingCartDaoMem{
 
             }else{
                 shoppingCart.id = this.generadorDeIds();
-                
+                shoppingCart.userId = user.id;
+                shoppingCart.date = new Date();
+                shoppingCart.address = user.address;
                 this.shoppingCarts.push(shoppingCart);
             }
             shoppingCartDTO = await transformarShoppingCartDTO(shoppingCart);

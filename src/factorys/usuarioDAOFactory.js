@@ -31,7 +31,7 @@ switch (option) {
         break;
 }
 
-export default class ProductsDAOFFactory{
+export default class UserDaoFactory{
     static getDao(){
         return dao;
     }

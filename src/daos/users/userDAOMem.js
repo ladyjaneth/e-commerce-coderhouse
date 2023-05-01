@@ -38,6 +38,16 @@ export default class UsuarioDaoMem{
         return userDTO;
     }
 
+    async getByEmail(email){
+        let user;
+        try{
+            user = await this.users.find(user => user.email == email);
+        }catch(exception){
+            console.error(exception);
+        }
+        return user;
+    }
+
     async save(user){
         let userDTO = {};
         try{
