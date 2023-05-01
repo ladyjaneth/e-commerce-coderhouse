@@ -1,11 +1,11 @@
-import UserDAOMem from '../daos/users/userDAOMem.js';
-import ProductDAOFile from '../daos/products/productDAOFile.js';
-import ProductDAODb from '../daos/products/productDAODb.js';
+import ShoppingCartDaoMem from '../daos/shopping-cart/shoppingCartDAOMem.js';
+import ShoppingCartDAOFile from '../daos/shopping-cart/shoppingCartDAOFile.js';
+import ShoppingCartDAODb from '../daos/shopping-cart/shoppingCartDAODb.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const rutaFile = './txt/products.txt';
+const rutaFile = './txt/shopping-cart.txt';
 const host = process.env.DB_MONGO_HOST || 'localhost';
 const port = process.env.DB_MONGO_PORT || '27017';
 const database = process.env.DB_MONGO_DATABASE || '27017';
@@ -16,22 +16,22 @@ const option = process.env.APP_STORE || 'Mem';
 let dao
 switch (option) {
     case 'Mongo':
-        dao = new ProductDAODb(connString);
+        dao = new ShoppingCartDAODb(connString);
         await dao.init();
         break;
 
     case 'File':
-        dao = new ProductDAOFile(rutaFile);
+        dao = new ShoppingCartDAOFile(rutaFile);
         await dao.init();
         break;
 
     default:
-        dao = new UserDAOMem();
+        dao = new ShoppingCartDaoMem();
         await dao.init(); 
         break;
 }
 
-export default class UserDaoFactory{
+export default class ShoppingCartDAOFactory{
     static getDao(){
         return dao;
     }

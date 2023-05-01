@@ -4,6 +4,11 @@ import session from 'express-session';
 
 import routerSign from './src/routes/auth/auth.js';
 import routerProduct from './src/routes/product/product.js';
+import routerShoppingCart from './src/routes/shopping-cart/shopping-cart.js';
+
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 
 const app = express();
@@ -35,4 +40,5 @@ app.listen(PORT, () => console.log(`Example app listening on port ${PORT}`));
 
 //CONFIGURACIÓN DE RUTAS
 app.use('/sign', routerSign);
-app.use('/product',routerProduct);
+app.use('/products',routerProduct);
+app.use('/users/:userId/shopping-cart',routerShoppingCart);

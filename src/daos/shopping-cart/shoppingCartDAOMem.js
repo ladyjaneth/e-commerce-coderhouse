@@ -14,14 +14,15 @@ export default class ShoppingCartDaoMem{
     }
 
 
-    getIndex(id){
-        return this.shoppingCarts.findIndex(shoppingCart => shoppingCart.id == id);
+    getIndex(userId){
+        return this.shoppingCarts.findIndex(shoppingCart => shoppingCart.userId == userId);
     }
 
-    async getAll(){
+    async getAll(userId){
         let shoppingCartDTO = [];
         try{
-            shoppingCartDTO = await transformarShoppingCartDTO(this.shoppingCarts);
+            const shoppingCartUser = this.shoppingCarts[this.getIndex(userId)];
+            shoppingCartDTO = await transformarShoppingCartDTO(shoppingCartUser);
         }catch(exception){
             console.error(exception);
         }
@@ -38,11 +39,20 @@ export default class ShoppingCartDaoMem{
         return shoppingCartDTO;
     }
 
-    async save(shoppingCart){
+    async save(user, shoppingCart){
         let shoppingCartDTO = {};
         try{
-            shoppingCart.id = this.generadorDeIds();
-            this.shoppingCarts.push(shoppingCart);
+            const shoppingCartUser = this.shoppingCarts[this.getIndex(user.id)];
+            if(shoppingCartUser)
+            {
+
+            }else{
+                shoppingCart.id = this.generadorDeIds();
+                shoppingCart.userId = user.id;
+                shoppingCart.date = new Date();
+                shoppingCart.address = user.address;
+                this.shoppingCarts.push(shoppingCart);
+            }
             shoppingCartDTO = await transformarShoppingCartDTO(shoppingCart);
         }catch(exception){
             console.error(exception);
